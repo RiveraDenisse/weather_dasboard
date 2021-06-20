@@ -12,7 +12,7 @@ for (var i=0; i<localStorage.length; i++){
 function search4City (){
     var searchCity = $(".searchCity").val();
     //variable for current weather
-    var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey;
+    var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
     
     if (searchCity == "") {
         console.log("searchCity");
@@ -36,7 +36,12 @@ function search4City (){
             // Add Temp 
             var currentTemp = currentName.append("<p>");
             currentName.append(currentTemp);
-            currentTemp.append("<p>" + "Temperature: " + response.main.temp + "</p>");
+            currentTemp.append("<p>" + "Temperature: " + response.main.temp + " F" + "</p>");
+            //add wind
+            currentTemp.append("<p>" + "Wind: " + response.wind.speed + " MPH" + "</p>");
+            //add humidity
+            currentTemp.append("<p>" + "Humidity: " + response.main.humidity + " %" + "</p>");
+            //add UV index
         });
     }
 }
