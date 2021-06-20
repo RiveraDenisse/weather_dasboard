@@ -30,7 +30,7 @@ function search4City (){
             //start current weather
             var currentCard = $(".currentCard").append("<div>").addClass("card-body");
             currentCard.empty();
-            var currentName = currentCard.append("<p>");
+            var currentName = currentCard.append("<p>").addClass("card-title");
             currentCard.append(currentName);
             // append local Date 
             var timeUTC = new Date(response.dt * 1000);
@@ -39,7 +39,7 @@ function search4City (){
             // Add Temp 
             var currentTemp = currentName.append("<p>");
             currentName.append(currentTemp);
-            currentTemp.append("<p>" + "Temperature: " + response.main.temp + " F" + "</p>");
+            currentTemp.append("<p>" + "Temperature: " + response.main.temp + " &degF" + "</p>");
             //add wind
             currentTemp.append("<p>" + "Wind: " + response.wind.speed + " MPH" + "</p>");
             //add humidity
@@ -70,7 +70,7 @@ function search4City (){
             day.forEach(function(i){
                 var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
-                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + " F" + "</p>" + "Wind: " + response.list[i].wind.speed + " MPH" + "</p>"+"<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + " &degF" + "</p>" + "Wind: " + response.list[i].wind.speed + " MPH" + "</p>"+"<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
             })
         });
     }

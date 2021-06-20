@@ -9,6 +9,9 @@ ul {
     padding: 12px;
     font-weight: bold;
 }
+#titleforecast {
+    font-size: 30px;
+}
 img {
     width: 100px;
     height: 100px;
