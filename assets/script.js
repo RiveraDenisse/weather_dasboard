@@ -54,6 +54,7 @@ function search4City (){
                 var currentUV;// = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>");//.addClass("card-text");
                 //currentUV.addClass("UV");
                 console.log(response.value);
+                //logic to compare UV index favorable/moderate/high
                 if (response.value > 8){
                 currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + " WARNING UV INDEX VALUE IS HIGH" + "</p>");
                 currentTemp.append(currentUV).addClass("text-danger");
