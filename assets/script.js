@@ -2,6 +2,7 @@ var apiKey = "298247b0e3697cf88be8ab01eb1fea69";
 //to store search keywords
 var keyCount = 0;
 
+
 for (var i=0; i<localStorage.length; i++){
     var city =localStorage.getItem(i);
     var cityName = $(".searchedcitydisplayed").addClass("list-group-item");
@@ -13,7 +14,7 @@ function search4City (){
     var searchCity = $(".searchCity").val();
     //variable for current weather
     var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
-    
+   
     if (searchCity == "") {
         console.log("searchCity");
     } else {    
@@ -30,9 +31,11 @@ function search4City (){
             var currentCard = $(".currentCard").append("<div>").addClass("card-body");
             currentCard.empty();
             var currentName = currentCard.append("<p>");
-            // Appends card to first div
             currentCard.append(currentName);
-            //append temperature
+            // append local Date 
+            var timeUTC = new Date(response.dt * 1000);
+            currentName.append(response.name + " " + timeUTC.toLocaleDateString("en-US"));
+            currentName.append(`<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
             // Add Temp 
             var currentTemp = currentName.append("<p>");
             currentName.append(currentTemp);
@@ -42,9 +45,20 @@ function search4City (){
             //add humidity
             currentTemp.append("<p>" + "Humidity: " + response.main.humidity + " %" + "</p>");
             //add UV index
+            var urlUV = `https://api.openweathermap.org/data/2.5/uvi?appid=298247b0e3697cf88be8ab01eb1fea69&lat=${response.coord.lat}&lon=${response.coord.lon}`;
+            $.ajax({
+                url: urlUV,
+                method: "GET"
+            }).then(function (response) {
+
+                var currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>").addClass("card-text");
+                currentUV.addClass("UV");
+                currentTemp.append(currentUV);
+                //currentUV.append("UV Index: " + response.value);
+            });
         });
     }
 }
-//append local date
+
 //5day forecast
     //append to row
