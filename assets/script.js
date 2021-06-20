@@ -51,7 +51,7 @@ function search4City (){
                 method: "GET"
             }).then(function (response) {
 
-                var currentUV;// = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>");//.addClass("card-text");
+                var currentUV;
                 //currentUV.addClass("UV");
                 console.log(response.value);
                 //logic to compare UV index favorable/moderate/high
