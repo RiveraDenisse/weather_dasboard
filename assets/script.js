@@ -14,7 +14,7 @@ function search4City (){
     var searchCity = $(".searchCity").val();
     //variable for current weather
     var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
-   
+    var urlFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
     if (searchCity == "") {
         console.log("searchCity");
     } else {    
@@ -54,11 +54,25 @@ function search4City (){
                 var currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>").addClass("card-text");
                 currentUV.addClass("UV");
                 currentTemp.append(currentUV);
-                //currentUV.append("UV Index: " + response.value);
             });
+        });
+        //5day forecast
+        $.ajax({
+            url: urlFiveDay,
+                method: "GET"
+        }).then(function (response){
+            // Array for 5-days 
+            var day = [0, 8, 16, 24, 32];
+            var fiveDayCard = $(".fiveDay").addClass("card-body");
+            var fiveDayDiv = $(".fiveDayOne").addClass("card-text");
+            fiveDayDiv.empty();
+            // For each for 5 days
+            day.forEach(function(i){
+                var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
+                FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
+                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+            })
         });
     }
 }
 
-//5day forecast
-    //append to row
