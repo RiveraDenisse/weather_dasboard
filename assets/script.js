@@ -2,7 +2,13 @@ var apiKey = "298247b0e3697cf88be8ab01eb1fea69";
 //to store search keywords
 var keyCount = 0;
 
+for (var i=0; i<localStorage.length; i++){
+    var city =localStorage.getItem(i);
+    var cityName = $(".searchedcitydisplayed").addClass("list-group-item");
+    cityName.append("<ul>" + city + "</ul>" );
+}
 
+//function start when user press "Search!"
 function search4City (){
     var searchCity = $(".searchCity").val();
     //variable for current weather
@@ -15,7 +21,17 @@ function search4City (){
             url: urlCurrent,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            var cityName = $(".searchedcitydisplayed").addClass("list-group-item");
+            cityName.append("<ul>" + response.name + "</ul>" );
+            //local storage
+            var local = localStorage.setItem(keyCount,response.name);
+            keyCount = keyCount + 1;
+            //start current weather
+            var currentCard = $(".currentCard").append("<div>").addClass("card-body");
+            currentCard.empty();
+            var currentName = currentCard.append("<p>");
+            // Appends card tite to first div
+            currentCard.append(currentName);
         });
     }
 }
