@@ -5,7 +5,7 @@ var keyCount = 0;
 for (var i=0; i<localStorage.length; i++){
     var city =localStorage.getItem(i);
     var cityName = $(".searchedcitydisplayed").addClass("list-group-item");
-    cityName.append("<ul>" + city + "</ul>" );
+    cityName.append("<ul>" + city + "</ul>");
 }
 
 //function start when user press "Search!"
@@ -30,8 +30,13 @@ function search4City (){
             var currentCard = $(".currentCard").append("<div>").addClass("card-body");
             currentCard.empty();
             var currentName = currentCard.append("<p>");
-            // Appends card tite to first div
+            // Appends card to first div
             currentCard.append(currentName);
+            //append temperature
+            // Add Temp 
+            var currentTemp = currentName.append("<p>");
+            currentName.append(currentTemp);
+            currentTemp.append("<p>" + "Temperature: " + response.main.temp + "</p>");
         });
     }
 }
