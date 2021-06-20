@@ -1,0 +1,24 @@
+.card-title {
+    font-size: 20px;
+}
+#valuedisplayed{
+    background-color: rgb(185, 181, 181);
+}
+ul {
+    background-color: gainsboro;
+    padding: 12px;
+    font-weight: bold;
+}
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.fiveDayColor {
+    padding: 20px;
+    background-color: darkblue;
+    color: white;
+    float: left;
+    margin: 10px;
+    border: 1px solid lightgray;
+}
