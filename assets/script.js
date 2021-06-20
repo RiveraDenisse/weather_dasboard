@@ -51,10 +51,23 @@ function search4City (){
                 method: "GET"
             }).then(function (response) {
 
-                var currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>").addClass("card-text");
-                currentUV.addClass("UV");
-                currentTemp.append(currentUV);
+                var currentUV;// = currentTemp.append("<p>" + "UV Index: " + response.value + "</p>");//.addClass("card-text");
+                //currentUV.addClass("UV");
+                console.log(response.value);
+                if (response.value > 8){
+                currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + " WARNING UV INDEX VALUE IS HIGH" + "</p>");
+                currentTemp.append(currentUV).addClass("text-danger");
+                }
+                else if (response.value < 4){
+                currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + " UV INDEX VALUE IS FAVORABLE" + "</p>");
+                currentTemp.append(currentUV).addClass("text-success");
+                }
+                else{
+                currentUV = currentTemp.append("<p>" + "UV Index: " + response.value + " UV INDEX VALUE IS MODERATE" + "</p>");
+                currentTemp.append(currentUV).addClass("text-warning");
+                }
             });
+            
         });
         //5day forecast
         $.ajax({
