@@ -10,9 +10,9 @@ Week 6 project was to build a weather dashboard with the following criteria:
     -UV Index must indicate if conditions are favorable, moderate or severe by color coding
 -The city is then added to the search history
 
-Link to live website: https://riveradenisse.github.io/weather_dasboard/
+Link to live website: https://riveradenisse.github.io/weather_dashboard/
 
-Github Repository : https://github.com/RiveraDenisse/weather_dasboard
+Github Repository : https://github.com/RiveraDenisse/weather_dashboard
 
 weather-Dashboard
 *![screenshot](/assets/images/WeatherDashboard.png)
