@@ -13,7 +13,7 @@ for (var i=0; i<localStorage.length; i++){
 function search4City (){
     var searchCity = $(".searchCity").val();
     //variable for current weather
-    var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
+    var urlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
     var urlFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&Appid=" + apiKey + "&units=imperial";
     if (searchCity == "") {
         console.log("searchCity");
@@ -22,8 +22,8 @@ function search4City (){
             url: urlCurrent,
             method: "GET"
         }).then(function (response) {
-            var cityName = $(".searchedcitydisplayed").addClass("list-group-item");
-            cityName.append("<ul>" + response.name + "</ul>" );
+            var cityName = $(".searchedcitydisplayed").addClass("btn-group-vertical");
+            cityName.append("<button>" + response.name + "</button>");
             //local storage
             var local = localStorage.setItem(keyCount,response.name);
             keyCount = keyCount + 1;
@@ -52,7 +52,6 @@ function search4City (){
             }).then(function (response) {
 
                 var currentUV;
-                //currentUV.addClass("UV");
                 console.log(response.value);
                 //logic to compare UV index favorable/moderate/high
                 if (response.value > 8){
@@ -89,4 +88,3 @@ function search4City (){
         });
     }
 }
-
